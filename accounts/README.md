@@ -1,3 +1,3 @@
 # Accounts
 
-This service pulls information for all user accounts
+This graphql service pulls information for all user accounts.
