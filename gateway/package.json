@@ -1,0 +1,13 @@
+{
+  "name": "federation-gateway",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start-gateway": "node index.js"
+  },
+  "dependencies": {
+    "@apollo/gateway": "latest",
+    "apollo-server": "latest",
+    "graphql": "latest"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "circleci-conditional-workflows",
+  "version": "1.0.0",
+  "main": "",
+  "repository": "git@github.com:celioreyes/circleci-conditional-workflows.git",
+  "author": "Celio Reyes <celioreyesrr@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "accounts",
+    "inventory",
+    "products",
+    "reviews",
+    "gateway"
+  ],
+  "scripts": {
+    "start-gateway": "nodemon gateway/index.js",
+    "start-service-accounts": "nodemon accounts/index.js",
+    "start-service-reviews": "nodemon reviews/index.js",
+    "start-service-products": "nodemon products/index.js",
+    "start-service-inventory": "nodemon inventory/index.js",
+    "start-services": "concurrently \"npm:start-service-*\""
+  },
+  "devDependencies": {
+    "nodemon": "latest",
+    "concurrently": "latest"
+  }
+}
