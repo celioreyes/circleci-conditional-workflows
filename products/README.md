@@ -1,3 +1,3 @@
 # Products
 
-A graphql api for all of our products
+A graphql api for all of our products!
