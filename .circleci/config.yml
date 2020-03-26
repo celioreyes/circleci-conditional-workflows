@@ -129,11 +129,16 @@ workflows:
             - products-build
 
   reviews:
-    when: << pipeline.parameters.accounts >>
+    when: << pipeline.parameters.reviews >>
     jobs:
       - build:
           name: reviews-build
           package_name: reviews
+      - deploy:
+          name: reviews-deploy
+          package_name: reviews
+          requires:
+            - reviews-build
 
   gateway:
     when: << pipeline.parameters.gateway >>
