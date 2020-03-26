@@ -45,9 +45,15 @@ if  [[ ${LAST_COMPLETED_BUILD_SHA} == "null" ]]; then
     | .[0][\"vcs_revision\"]"`
 fi
 
-if [[ ${LAST_COMPLETED_BUILD_SHA} == "null" ]]; then
+if [[ (${LAST_COMPLETED_BUILD_SHA} == "null" || ${LAST_COMPLETED_BUILD_SHA} == "" ) && ${CIRCLE_BRANCH} != "master" ]]; then
   echo -e "\e[93mNo CI builds for branch ${PARENT_BRANCH}. Using master.\e[0m"
   LAST_COMPLETED_BUILD_SHA=master
+elif [[ ${CIRCLE_BRANCH} == "master" ]]; then
+  # if there's no last completed build sha but we are on master
+  # we compare against what was previously on master since the current
+  # sha and the current master are the same set of changes
+  # this allows for services to be deployed in the very first deployment
+  LAST_COMPLETED_BUILD_SHA="$(git show HEAD~1 --summary --format=%H)"
 fi
 
 ############################################
